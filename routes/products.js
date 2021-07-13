@@ -8,6 +8,7 @@ const fse = require("fs-extra");
 const {
   addImages,
   addProduct,
+  deleteProduct,
   updateProduct,
   getProducts,
   getProductById,
@@ -18,13 +19,13 @@ const {
 // Configurations for multer
 const storage = multer.diskStorage({
   // Destination, where files should be stored (image url)
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     var newDestination = req.headers.path; // We sen image url in header ("path"), when making axios request
     fse.mkdirsSync(newDestination); // We creating folder in destination, specified in headers "path"
     cb(null, newDestination); // Saving file
   },
 
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.originalname); // We accept original file-name
   }
 });
@@ -78,7 +79,13 @@ router.put(
   passport.authenticate("jwt-admin", { session: false }),
   updateProduct
 );
-
+// ============================
+router.delete(
+  "/:itemNo",
+  passport.authenticate("jwt-admin", { session: false }),
+  deleteProduct
+);
+// ============================
 // @route   GET /products
 // @desc    GET existing products
 // @access  Public
