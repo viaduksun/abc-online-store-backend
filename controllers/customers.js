@@ -122,7 +122,8 @@ exports.loginCustomer = async (req, res, next) => {
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer " + token
+                token: "Bearer " + token,
+                isAdmin: customer.isAdmin
               });
             }
           );
@@ -231,7 +232,7 @@ exports.updatePassword = (req, res) => {
   Customer.findOne({ _id: req.user.id }, (err, customer) => {
     let oldPassword = req.body.password;
 
-    customer.comparePassword(oldPassword, function(err, isMatch) {
+    customer.comparePassword(oldPassword, function (err, isMatch) {
       if (!isMatch) {
         errors.password = "Password does not match";
         res.json(errors);
