@@ -123,7 +123,8 @@ exports.loginCustomer = async (req, res, next) => {
               res.json({
                 success: true,
                 token: "Bearer " + token,
-                isAdmin: customer.isAdmin
+                isAdmin: customer.isAdmin,
+                userData: customer
               });
             }
           );
