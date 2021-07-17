@@ -26,7 +26,7 @@ exports.addProduct = (req, res, next) => {
   productFields.itemNo = rand();
 
   try {
-    productFields.name = productFields.name
+    productFields.category = productFields.category
       .toLowerCase()
       .trim()
       .replace(/\s\s+/g, " ");
