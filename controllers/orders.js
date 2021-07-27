@@ -14,6 +14,8 @@ const rand = uniqueRandom(1000000, 9999999);
 exports.placeOrder = async (req, res, next) => {
   try {
     const order = _.cloneDeep(req.body);
+
+
     order.orderNo = String(rand());
     let cartProducts = [];
 
@@ -52,7 +54,7 @@ exports.placeOrder = async (req, res, next) => {
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
     );
-
+    console.log('ORDER', order);
     const productAvailibilityInfo = await productAvailibilityChecker(
       order.products
     );
@@ -104,7 +106,7 @@ exports.placeOrder = async (req, res, next) => {
             res
           );
 
-          for (item of order.products){
+          for (item of order.products) {
             const id = item.product._id;
             await Product.findOneAndUpdate({ _id: id }, { quantity: item.product.quantity - 1 }, { new: true })
           }

@@ -118,12 +118,13 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProductById = (req, res, next) => {
   Product.findOne({
-    itemNo: req.params.itemNo
+    // itemNo: req.params.itemNo
+    _id: req.params.id
   })
     .then(product => {
       if (!product) {
         res.status(400).json({
-          message: `Product with itemNo ${req.params.itemNo} is not found`
+          message: `Product with ID ${req.params.itemNo} is not found`
         });
       } else {
         res.json(product);
