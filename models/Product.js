@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
   {
+    _id: {
+      type: String
+    },
     itemNo: {
       type: String,
       required: true
