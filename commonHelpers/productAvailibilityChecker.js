@@ -8,6 +8,10 @@ module.exports = async orderProducts => {
         const dbProduct = await Product.findOne({ _id: orderItem.product._id });
         const orderedQuantity = orderItem.cartQuantity;
         const realQuantity = dbProduct.quantity;
+
+        console.log('DB_PRODUCT', dbProduct, dbProduct.quantity);
+        console.log('BACK-111', orderedQuantity, realQuantity, dbProduct);
+
         result.push({
           productId: dbProduct._id,
           itemNo: dbProduct.itemNo,

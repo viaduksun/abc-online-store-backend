@@ -18,6 +18,7 @@ exports.placeOrder = async (req, res, next) => {
 
     order.orderNo = String(rand());
     let cartProducts = [];
+    console.log('ORDER BACK', order);
 
     if (req.body.deliveryAddress) {
       order.deliveryAddress = JSON.parse(req.body.deliveryAddress);
@@ -48,16 +49,18 @@ exports.placeOrder = async (req, res, next) => {
     } else {
       order.products = JSON.parse(req.body.products);
     }
+    console.log('ORDER', order);
 
     order.totalSum = order.products.reduce(
       (sum, cartItem) =>
         sum + cartItem.product.currentPrice * cartItem.cartQuantity,
       0
     );
-    console.log('ORDER', order);
+
     const productAvailibilityInfo = await productAvailibilityChecker(
       order.products
     );
+    console.log('ORDER_TOTAL_SUMM', order);
 
     if (!productAvailibilityInfo.productsAvailibilityStatus) {
       res.json({

@@ -16,15 +16,15 @@ const ProductSchema = new Schema(
     //   type: String,
     //   required: true
     // },
-    // currentPrice: {
-    //   type: Number,
-    //   default: 0,
-    //   required: true
-    // },
-    // previousPrice: {
-    //   type: Number,
-    //   default: 0
-    // },
+    currentPrice: {
+      type: Number,
+      default: 0,
+      required: true
+    },
+    previousPrice: {
+      type: Number,
+      default: 0
+    },
     // categories: {
     //   type: String,
     //   required: true
@@ -35,11 +35,11 @@ const ProductSchema = new Schema(
     //     required: true
     //   }
     // ],
-    // quantity: {
-    //   type: Number,
-    //   required: true,
-    //   default: 0
-    // },
+    quantity: {
+      type: Number,
+      required: true,
+      default: 0
+    },
     color: {
       type: String
     },
@@ -49,9 +49,9 @@ const ProductSchema = new Schema(
     productUrl: {
       type: String
     },
-    // brand: {
-    //   type: String
-    // },
+    brand: {
+      type: String
+    },
     manufacturer: {
       type: String
     },
