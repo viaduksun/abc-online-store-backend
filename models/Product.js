@@ -8,7 +8,6 @@ const ProductSchema = new Schema(
     },
     itemNo: {
       type: String,
-      required: true
     },
     enabled: {
       type: Boolean,

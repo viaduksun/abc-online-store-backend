@@ -81,7 +81,8 @@ router.put(
 );
 // ============================
 router.delete(
-  "/:itemNo",
+  // "/:itemNo",
+  "/:id",
   passport.authenticate("jwt-admin", { session: false }),
   deleteProduct
 );
@@ -104,6 +105,7 @@ router.post("/search", searchProducts);
 // @route   GET /products/:id
 // @desc    GET existing product by id
 // @access  Public
-router.get("/:itemNo", getProductById);
+// router.get("/:itemNo", getProductById);
+router.get("/:id", getProductById);
 
 module.exports = router;
