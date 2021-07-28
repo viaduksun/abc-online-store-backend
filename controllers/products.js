@@ -118,8 +118,8 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProductById = (req, res, next) => {
   Product.findOne({
-    // itemNo: req.params.itemNo
-    _id: req.params.id
+    itemNo: req.params.itemNo
+    // _id: req.params.id
   })
     .then(product => {
       if (!product) {
