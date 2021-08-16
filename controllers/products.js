@@ -138,15 +138,15 @@ exports.getProductById = (req, res, next) => {
 };
 // =================================================================
 exports.deleteProduct = (req, res, next) => {
-  Product.findOne({ itemNo: req.params.itemNo }).then(async product => {
+  Product.findOne({ itemNo: req.params.id }).then(async product => {
     if (!product) {
       return res.status(400).json({
-        message: `Product with itemNo "${req.params.itemNo}" is not found...`
+        message: `Product with itemNo "${req.params.id}" is not found...`
       });
     } else {
-      const productToDelete = await Product.findOne({ itemNo: req.params.itemNo });
+      const productToDelete = await Product.findOne({ itemNo: req.params.id });
 
-      Product.deleteOne({ itemNo: req.params.itemNo })
+      Product.deleteOne({ itemNo: req.params.id })
         .then(deletedCount =>
           res.status(200).json({
             message: `Product witn itemNo "${productToDelete.itemNo}" is successfully deleted from DB.`,
